@@ -1,0 +1,58 @@
+---
+title: "Country Analysis"
+---
+
+## Trends in Life Expectancy, GDP, and Population Over Time
+
+The following visualizations illustrate the evolution of life expectancy, GDP per capita, and population for a selected country, as well as a global view of life expectancy changes over time.
+
+```{python}
+import pandas as pd
+import matplotlib.pyplot as plt
+import plotly.express as px
+
+# Load the Gapminder dataset
+df = pd.read_csv("/Users/zihanliang/Documents/GitHub Documents/qtm350-quiz02/gapminder.csv")
+
+# Define the country to analyze
+country_name = "United States"
+subset = df[df["country"] == country_name]
+
+# Create subplots for life expectancy, GDP per capita, and population
+fig, ax = plt.subplots(3, 1, figsize=(8, 12))
+
+# Life Expectancy Trend
+ax[0].plot(subset["year"], subset["life_expectancy"], marker="o", linestyle="-", color="b")
+ax[0].set_title(f"Life Expectancy in {country_name}")
+ax[0].set_xlabel("Year")
+ax[0].set_ylabel("Life Expectancy")
+
+# GDP per Capita Trend
+ax[1].plot(subset["year"], subset["gdp_per_capita"], marker="o", linestyle="-", color="g")
+ax[1].set_title(f"GDP per Capita in {country_name}")
+ax[1].set_xlabel("Year")
+ax[1].set_ylabel("GDP per Capita")
+
+# Population Trend
+ax[2].plot(subset["year"], subset["population_millions"], marker="o", linestyle="-", color="r")
+ax[2].set_title(f"Population in {country_name}")
+ax[2].set_xlabel("Year")
+ax[2].set_ylabel("Population (Millions)")
+
+# Adjust layout and display the plots
+plt.tight_layout()
+plt.show()
+```
+
+```{python}
+fig = px.choropleth(df, 
+                    locations="country", 
+                    locationmode="country names",
+                    color="life_expectancy", 
+                    hover_name="country",
+                    animation_frame="year",
+                    title="Global Life Expectancy Over Time",
+                    color_continuous_scale="Viridis")
+
+fig.show()
+```

@@ -1,0 +1,11 @@
+---
+title: "Exploring the Gapminder Dataset"
+---
+
+## Welcome to the Gapminder Analysis Portal
+
+This site provides an analytical overview of the Gapminder dataset, focusing on the relationships among life expectancy, GDP per capita, and population.
+
+- [Life Expectancy vs. GDP per Capita](life-gdp.qmd)
+- [Life Expectancy vs. Population](life-population.qmd)
+- [Country-Specific Insights](country.qmd)
